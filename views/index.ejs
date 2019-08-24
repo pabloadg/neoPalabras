@@ -1,0 +1,77 @@
+<h3>Agregar palabra</h3>
+
+<form method="post" action="/palabra/add">
+    <label>Nombre palabra </label><br>
+    <input type="text"name  = "lema">
+    <br>
+    <label>Definicion </label><br>
+    <input type="text"name  = "Definicion">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<h3>Agregar ubicación de palabra</h3>
+
+<form method="post" action="/palabra/region/add">
+    <label>Palabra</label><br>
+    <input type="text"name  = "lema">
+    <br>
+    <label>Region</label><br>
+    <input type="text"name  = "nombre">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<h3>Buscar palabra</h3>
+
+<form method="post" action="/buscar/add">
+    <label>Buscar</label><br>
+    <input type="text"name  = "lema">
+    <br><br>
+    <input type="submit" value="Buscar">
+</form>
+
+<h1>Definición de la búsqueda</h1>
+<ul>
+    <li><%= palabra1 %></li>
+</ul>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="C:/Users/pandi/Documents/Especializacion/linguisticaComputacional/neoPalabras/views/css/bootstrap.min.css">
+<script src="js/bootstrap.min.js"></script>
+
+<script src="https://cdn.neo4jlabs.com/neovis.js/v1.1.0/neovis.js"></script>
+<script>
+function draw(){
+    var config = { 
+        container_id: "viz",
+        server_url: "bolt://localhost",
+        server_user:"neo4j",
+        server_password: "123456",
+        labels: {
+        },
+    relationships: {
+    },
+initial_cypher: "MATCH p=()-->() RETURN p"
+}
+var viz = new NeoVis.default(config);
+viz.render();
+}
+</script>
+<body onload="draw()">
+    <div id="viz" ></div>
+</body>
+
+<h1>Lista de Palabras</h1>
+<ul>
+    <% palabras.forEach(function(palabra){ %>
+        <li><%= palabra.lema %></li>   
+    <% }) %>
+</ul>
+
+<h1>Lista de Regiones</h1>
+<ul>
+<% region.forEach(region => { %>
+    <li><%= region.nombre %></li>
+<% }) %>
+</ul>
