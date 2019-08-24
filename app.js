@@ -77,7 +77,7 @@ app.get ('/', function (req, res){
     res.redirect('/');
 });
 
-app.post('/buscar/add/' ,function(req, res){
+app.post('/buscar/add' ,function(req, res){
     var lema =req.body.lema;
 
     session

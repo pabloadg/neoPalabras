@@ -1,77 +1,138 @@
-<h3>Agregar palabra</h3>
+<!doctype html>
 
-<form method="post" action="/palabra/add">
-    <label>Nombre palabra </label><br>
-    <input type="text"name  = "lema">
-    <br>
-    <label>Definicion </label><br>
-    <input type="text"name  = "Definicion">
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
+<html>
 
-<h3>Agregar ubicación de palabra</h3>
+<head>   
 
-<form method="post" action="/palabra/region/add">
-    <label>Palabra</label><br>
-    <input type="text"name  = "lema">
-    <br>
-    <label>Region</label><br>
-    <input type="text"name  = "nombre">
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
+  <!-- Required meta tags -->
 
-<h3>Buscar palabra</h3>
+    <meta charset="utf-8">
 
-<form method="post" action="/buscar/add">
-    <label>Buscar</label><br>
-    <input type="text"name  = "lema">
-    <br><br>
-    <input type="submit" value="Buscar">
-</form>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<h1>Definición de la búsqueda</h1>
-<ul>
-    <li><%= palabra1 %></li>
-</ul>
+    <!-- Bootstrap CSS -->
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="C:/Users/pandi/Documents/Especializacion/linguisticaComputacional/neoPalabras/views/css/bootstrap.min.css">
-<script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<script src="https://cdn.neo4jlabs.com/neovis.js/v1.1.0/neovis.js"></script>
-<script>
-function draw(){
-    var config = { 
-        container_id: "viz",
-        server_url: "bolt://localhost",
-        server_user:"neo4j",
-        server_password: "123456",
-        labels: {
-        },
-    relationships: {
-    },
-initial_cypher: "MATCH p=()-->() RETURN p"
-}
-var viz = new NeoVis.default(config);
-viz.render();
-}
-</script>
-<body onload="draw()">
-    <div id="viz" ></div>
-</body>
+  <title>Diccionario Colombiano</title>
 
-<h1>Lista de Palabras</h1>
-<ul>
-    <% palabras.forEach(function(palabra){ %>
-        <li><%= palabra.lema %></li>   
-    <% }) %>
-</ul>
+</head>
 
-<h1>Lista de Regiones</h1>
-<ul>
-<% region.forEach(region => { %>
-    <li><%= region.nombre %></li>
-<% }) %>
-</ul>
+<body style="background-color: #eaeeea;"  onload="draw()">
+   <div class="container">
+       <img src="img/diccionariocol.jpg" width="100%">
+   </div>
+   <div class="container">
+       <hr/>
+    <div class="row justify-content-md-center">
+        <div class="col-sm">
+            <h3>Agregar palabra</h3>
+    
+            <form method="post" action="/palabra/add">
+                <div class= "form-group">
+                    <label for= "exampleFormControlInput1">Nombre palabra </label><br>
+                    <input type="text" name = "lema">
+                    <br>
+                    <label for= "exampleFormControlInput1">Definicion </label><br>
+                    <input type="text" name = "Definicion">
+                    <br><br>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </form>
+        </div>
+        <div class="col-sm">
+            <h3>Agregar ubicación de palabra</h3>
+
+            <form method="post" action="/palabra/region/add">
+                <div class= "form-group">
+                <label for= "exampleFormControlInput1"> Palabra</label><br>
+                <input type="text" name  = "lema">
+                <br>
+                <label for= "exampleFormControlInput1">Region</label><br>
+                <input type="text" name  = "nombre">
+                <br><br>
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+            </form>
+        </div>
+        <div class="col-sm">
+            <h3>Buscar palabra</h3>
+            <form method="post" action="/buscar/add">
+                <div class= "form-group">
+                    <label for= "exampleFormControlInput1">Buscar</label><br>
+                    <input type="text" name  = "lema">
+                    <br><br>
+                    <input type="submit" class="btn btn-primary" value="Buscar">
+                </div>
+            </form>            
+        </div>
+    </div>
+
+   </div>
+<hr/>
+   <div class="container">
+    <div class="row content-md-center">
+        <div class="col-sm">
+                <br><br>
+            <h1 class="text-center">Definición de la búsqueda</h1>
+                 <li class="text-center"><%= palabra1 %></li>
+                 <br><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm" id="viz" >
+            <script src="https://cdn.neo4jlabs.com/neovis.js/v1.1.0/neovis.js"></script>
+                    <script>
+                    function draw(){
+                        var config = { 
+                            container_id: "viz",
+                            server_url: "bolt://localhost",
+                            server_user:"neo4j",
+                            server_password: "123456",
+                            labels: {
+                            },
+                        relationships: {
+                        },
+                    initial_cypher: "MATCH p=()-->() RETURN p"
+                    }
+                    var viz = new NeoVis.default(config);
+                    viz.render();
+                    }
+                    </script>             
+        </div>
+    </div>
+    </div>
+
+<hr/>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-sm">
+            <h1>Lista de Palabras</h1>
+            <ul>
+                <% palabras.forEach(function(palabra){ %>
+                    <li><%= palabra.lema %></li>   
+                <% }) %>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <h1>Lista de Regiones</h1>
+                <ul>
+                <% region.forEach(region => { %>
+                    <li><%= region.nombre %></li>
+                <% }) %>
+                </ul> 
+        </div>
+    </div>
+</div>
+
+        
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   
+   </body>
+   
+   </html>
+
